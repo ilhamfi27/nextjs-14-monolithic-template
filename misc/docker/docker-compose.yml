@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  petstore:
+    image: swaggerapi/petstore
+    environment:
+      - SWAGGER_BASE_PATH=/v2
+      - SWAGGER_URL=http://localhost
+
+  mariadb:
+    image: mariadb:10.3.10
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '--silent']
+      start_period: 30s
+    networks:
+      default:
+    volumes:
+      - ./volumes/mariadb:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+    ports:
+      - 34321:80
+    environment:
+      - PMA_HOST=mariadb
+      - UPLOAD_LIMIT=100M
+  
