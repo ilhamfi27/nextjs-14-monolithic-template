@@ -19,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "swagger-ui-react": "^5.17.12",
+    "typeorm": "^0.3.20",
     "uuid": "^9.0.1",
     "winston": "^3.13.0"
   },

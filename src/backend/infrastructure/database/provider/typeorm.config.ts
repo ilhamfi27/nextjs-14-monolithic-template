@@ -9,7 +9,6 @@ export const dataSourceOptions: DataSourceOptions = {
   username: config.db.username,
   password: config.db.password,
   database: config.db.database,
-  schema: config.db.schema,
   entities: [],
   migrations: [resolve(join(__dirname, 'migrations/*.{ts,js}'))],
   synchronize: false,
